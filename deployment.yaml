@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: dk8-deployment
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: deploy
+    template:
+        metadata: 
+            labels:
+                app: deploy
+        spec:
+            containers:
+                - name: docker-k8-image
+                  image: banturamya/dk8image:${BUILD_NUMBER}
+                  ports:
+                    - containerPort: 5000    

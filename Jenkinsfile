@@ -31,5 +31,11 @@ pipeline {
         }
             }
         }
+
+        stage ('Deployment to k8'){
+            steps{
+                sh 'kubectl set image deployment/dk8-deployment docker-k8-image=$USER/dk8image:${BUILD_NUMBER} --record'
+            }
+        }
     }
 }
