@@ -9,7 +9,7 @@ pipeline {
 
         stage ('running image'){
             steps {
-                sh 'docker run -d --name d-k8-1 -p 5001:5000 dk8image'
+                sh 'docker run -d --name d-k8-2 -p 5001:5000 dk8image'
             }
         }
 
