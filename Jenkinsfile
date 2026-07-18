@@ -3,13 +3,13 @@ pipeline {
     stages {
         stage ('Build stage'){
             steps {
-                sh 'docker build -t dk8Image .'
+                sh 'docker build -t dk8image .'
             }
         }
 
         stage ('running image'){
             steps {
-                sh 'docker run -d --name d-k8-1 -p 5001:5000 dk8Image'
+                sh 'docker run -d --name d-k8-1 -p 5001:5000 dk8image'
             }
         }
     }
