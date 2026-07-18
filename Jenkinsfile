@@ -3,13 +3,13 @@ pipeline {
     stages {
         stage ('Build stage'){
             steps {
-                sh 'docker build -t dk8image .'
+                sh 'docker build -t dk8image:${BUILD_NUMBER} .'
             }
         }
 
         stage ('running image'){
             steps {
-                sh 'docker run -d --name d-k8-3 -p 5002:5000 dk8image'
+                sh 'docker run -d --name d-k8-3 -p 5002:5000 dk8image:${BUILD_NUMBER}'
             }
         }
 
@@ -25,8 +25,8 @@ pipeline {
         ]){
             sh '''
             docker login -u $USER -p $PASS
-            docker tag dk8image $USER/dk8image
-            docker push $USER/dk8image
+            docker tag dk8image:${BUILD_NUMBER} $USER/dk8image:${BUILD_NUMBER}
+            docker push $USER/dk8image:${BUILD_NUMBER}
             '''
         }
             }
